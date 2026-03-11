@@ -16,7 +16,7 @@ const options = {
 
 
 async function setup(){
-  canvas = createCanvas(640,640);
+  canvas = createCanvas(windowWidth,windowHeight);
 
     camden = await loadTable('/assets/camdenlights.csv', ',', 'header');
 
