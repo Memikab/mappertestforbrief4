@@ -1,30 +1,47 @@
 let myMap;
 let canvas;
+let camden;
+
 const mappa = new Mappa('Leaflet');
+
 const options = {
-  lat: 0,
-  lng: 0,
-  zoom: 4,
+  lat: 51.54,
+  lng: -0.14,
+  zoom: 13,
   style: "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
 }
 
-function setup(){
+
+ 
+
+
+async function setup(){
   canvas = createCanvas(640,640);
+
+    camden = await loadTable('/assets/camdenlights.csv', ',', 'header');
+
   myMap = mappa.tileMap(options); 
-  myMap.overlay(canvas) 
+  myMap.overlay(canvas);
 
-  fill(200, 100, 100);
-  
-  // Only redraw the point when the map changes and not every frame.
-  myMap.onChange(drawPoint);
+  console.log(camden.columns);
+
+  myMap.onChange(drawCamden);
+
+  fill(200,100,100);
 }
 
-function draw(){
-}
+function draw(){}
 
-function drawPoint(){
+function drawCamden(){
   clear();
 
-  const nigeria = myMap.latLngToPixel(11.396396, 5.076543); 
-  ellipse(nigeria.x, nigeria.y, 20, 20);
+  for (let i = 0; i < camden.getRowCount(); i++) {
+
+    const latitude = Number(camden.getString(i, 'Latitude'));
+    const longitude = Number(camden.getString(i, 'Longitude'));
+
+    const pos = myMap.latLngToPixel(latitude, longitude);
+
+    ellipse(pos.x, pos.y, 5, 5);
+  }
 }
