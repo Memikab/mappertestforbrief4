@@ -31,7 +31,6 @@ async function setup(){
   fill(200,100,100);
 }
 
-function draw(){}
 
 function drawCamden(){
   clear();
@@ -43,6 +42,7 @@ function drawCamden(){
     const lightType = camden.getString(i,'Lamp Type');
     
   const pos = myMap.latLngToPixel(latitude, longitude);
+  
 
   if (lightType === "Generic LED Lighting") {
   fill(0, 200, 255);  
@@ -56,9 +56,7 @@ fill(180, 240, 206);
 
 ellipse(pos.x, pos.y, 5, 5);
 
-    ellipse(pos.x, pos.y, 5, 5);
     
   }
 
-  
 }
