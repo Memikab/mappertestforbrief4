@@ -24,6 +24,7 @@ async function setup(){
   myMap.overlay(canvas);
 
   console.log(camden.columns);
+  
 
   myMap.onChange(drawCamden);
 
@@ -39,9 +40,25 @@ function drawCamden(){
 
     const latitude = Number(camden.getString(i, 'Latitude'));
     const longitude = Number(camden.getString(i, 'Longitude'));
+    const lightType = camden.getString(i,'Lamp Type');
+    
+  const pos = myMap.latLngToPixel(latitude, longitude);
 
-    const pos = myMap.latLngToPixel(latitude, longitude);
+  if (lightType === "Generic LED Lighting") {
+  fill(0, 200, 255);  
+  }else if(lightType === "High Pressure Sodium"){
+  fill(245, 209, 66);  
+  }else if(lightType === "Cosmopolis"){
+  fill(212, 104, 242);   
+  } else if(lightType === "High Pressure Mercury"){
+fill(180, 240, 206);
+  }
+
+ellipse(pos.x, pos.y, 5, 5);
 
     ellipse(pos.x, pos.y, 5, 5);
+    
   }
+
+  
 }
