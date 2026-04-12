@@ -10,4 +10,23 @@ body {
     align-items: center;
     min-height: 100vh;
     background: #f0f0f0;
+    #key {
+  position: fixed;        /* stays in the same place when scrolling/panning */
+  top: 20px;              /* distance from top of window */
+  right: 20px;            /* distance from right */
+  background: rgba(50, 50, 50, 0.8); /* semi-transparent dark background */
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: sans-serif;
+  z-index: 1000;          /* ensures it’s on top of the map */
+}
+
+.color-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
 }
